@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1,h2,h3,h4,h5,h6 {
+        font-family: "Merriweather", serif;
+    }
+    
+    
+    html {
+        font-family: "Poppins", sans-serif;
+    }
+}
+
+@layer components {
+    .nav-link {
+        @apply text-primary hover:opacity-100 opacity-70 transition-all duration-300 py-2 px-3 rounded-xl
+    }
+
+    .nav-link:hover {
+        @apply bg-primary text-primary-forground 
+    }
+    
+    .primary-button {
+        @apply text-sm bg-primary text-primary-forground hover:opacity-90 transition-opacity py-2 px-3 rounded-full
+    }
+    
+    .social-items {
+        @apply flex gap-2 items-center mt-4
+    }
+
+    .social-items svg {
+        @apply w-6 h-6
+    }
+
+    .social-items a {
+        @apply p-2 rounded-full bg-white transition-all shadow-center
+    }
+
+    .social-items a:hover {
+        @apply text-white bg-primary
+    }
+
+    .footer-items > * {
+        @apply footer-item
+    }
+
+    .footer-item {
+        @apply flex flex-col gap-4
+    }
+
+    .footer-item p {
+        @apply text-gray-txt text-sm m-0
+    }
+
+    .footer-item a {
+        @apply text-gray-txt text-sm no-underline
+    }
+
+    .footer-item h6 {
+        @apply text-gray-light
+    }
+}
+
+
+

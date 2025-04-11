@@ -1,0 +1,44 @@
+<header
+  th:fragment="header"
+  class="container sticky top-4 mt-8 backdrop-blur-md bg-white/80 z-50 rounded-full shadow-center"
+>
+  <nav class="flex items-center h-20">
+    <!-- logo -->
+    <div class="order-0">
+      <a href="index.html">
+        <img
+          src="https://bakes-saigon.com/cdn/shop/files/BAKES__Logo-06_220x.png?v=1638454703"
+          width="180"
+          alt="logo"
+          class="rounded-full"
+        />
+      </a>
+    </div>
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-2 hidden w-full flex-[0_0_100%] lg:order-1 lg:flex lg:w-auto lg:flex-auto lg:justify-center lg:space-x-4"
+    >
+      <li class="nav-item">
+        <a href="/" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="about.html" class="nav-link">About</a>
+      </li>
+      <li class="nav-item">
+        <a href="blog.html" class="nav-link">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a href="features.html" class="nav-link">Features</a>
+      </li>
+      <li class="nav-item">
+        <a href="how-it-works.html" class="nav-link">How It Works</a>
+      </li>
+      <li class="nav-item">
+        <a href="contact.html" class="nav-link">Contact</a>
+      </li>
+    </ul>
+    <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
+      <a class="primary-button" href="signin.html">Sign Up</a>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/head :: head" />
+  <body>
+    <header th:replace="fragments/header :: header" />
+    <section th:replace="fragments/banner :: banner" />
+    <section class="container">
+      <h1 class="p-3">Xin chàos, <span th:text="${categories}">bạn</span>!</h1>
+    </section>
+    <footer th:replace="fragments/footer :: footer" />
+  </body>
+</html>
