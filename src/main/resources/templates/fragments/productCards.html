@@ -1,0 +1,5 @@
+<div th:fragment="productCards" class="grid grid-cols-4 gap-4">
+  <div th:each="product : ${products}">
+    <div th:replace="~{fragments/productCard :: productCard(${product})}"></div>
+  </div>
+</div>

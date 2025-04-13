@@ -1,0 +1,10 @@
+<div
+  th:fragment="blockWrapper(content, label)"
+  class="p-8 shadow-center rounded-xl"
+>
+  <p
+    th:text="${label}"
+    class="uppercase text-primary font-semibold text-lg mb-4"
+  ></p>
+  <div th:replace="${content}"></div>
+</div>

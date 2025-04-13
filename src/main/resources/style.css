@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
     h1,h2,h3,h4,h5,h6 {
@@ -20,11 +21,11 @@
     }
 
     .nav-link:hover {
-        @apply bg-primary text-primary-forground 
+        @apply bg-primary text-primary-foreground 
     }
     
     .primary-button {
-        @apply text-sm bg-primary text-primary-forground hover:opacity-90 transition-opacity py-2 px-3 rounded-full
+        @apply text-sm bg-primary text-primary-foreground hover:opacity-90 transition-opacity py-2 px-3 rounded-full
     }
     
     .social-items {

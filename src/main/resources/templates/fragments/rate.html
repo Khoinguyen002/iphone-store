@@ -1,0 +1,6 @@
+<div th:fragment="rate(value)">
+  <span
+    th:each="i : ${#numbers.sequence(1, value)}"
+    class="fa-solid fa-star text-yellow"
+  ></span>
+</div>

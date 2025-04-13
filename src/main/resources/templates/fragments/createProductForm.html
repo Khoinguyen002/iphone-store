@@ -1,0 +1,51 @@
+<form
+  th:fragment="createProductForm"
+  id="createProductForm"
+  th:action="${product.id} != null ? @{'/products/update/' + ${product.id}} : @{/products/new}"
+  th:object="${product}"
+  method="post"
+>
+  <div class="grid grid-cols-2 gap-4">
+    <!-- Name -->
+    <div
+      th:replace="~{fragments/input :: input('text', 'name', 'Product name', 'Product name', null)}"
+    ></div>
+
+    <!-- Description -->
+    <div
+      th:replace="~{fragments/input :: input('textarea', 'desciption', 'Desciption', 'Desciption', null)}"
+    ></div>
+
+    <!-- Rate -->
+    <div
+      th:replace="~{fragments/input :: input('number', 'rate', '', 'Đánh giá (sao)', null)}"
+    ></div>
+
+    <!-- Cover -->
+    <div
+      th:replace="~{fragments/input :: input('text', 'cover', '', 'Ảnh bìa (URL)', null)}"
+    ></div>
+
+    <!-- Price -->
+    <div
+      th:replace="~{fragments/input :: input('number', 'price', '', 'Giá bán', null)}"
+    ></div>
+
+    <!-- Discount -->
+    <div
+      th:replace="~{fragments/input :: input('number', 'discount', '', 'Giảm giá (%)', null)}"
+    ></div>
+
+    <!-- Category (select) -->
+    <div
+      th:replace="~{fragments/input :: input('select', 'category', '', 'Danh mục', ${categories})}"
+    ></div>
+  </div>
+
+  <!-- Submit -->
+  <div class="text-end w-full">
+    <button th:replace="~{fragments/button :: button('submit', 'Save', null)}">
+      Lưu sản phẩm
+    </button>
+  </div>
+</form>

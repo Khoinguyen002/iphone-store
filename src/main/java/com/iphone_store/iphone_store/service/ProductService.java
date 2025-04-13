@@ -3,6 +3,9 @@ package com.iphone_store.iphone_store.service;
 import com.iphone_store.iphone_store.entity.Product;
 import com.iphone_store.iphone_store.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +20,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> getFirst10Products() {
+        return productRepository.findAll(PageRequest.of(0, 10)).getContent();
+    }
+
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElseThrow();
     }
@@ -29,7 +36,8 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public List<Product> searchByName(String keyword) {
-        return productRepository.findByNameContainingIgnoreCase(keyword);
+    public Page<Product> searchByNamePaged(String keyword, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productRepository.findByNameContainingIgnoreCase(keyword, pageable);
     }
 }

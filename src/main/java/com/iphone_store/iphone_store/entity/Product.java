@@ -1,11 +1,14 @@
 package com.iphone_store.iphone_store.entity;
 
+import jakarta.annotation.Nonnull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Product {
@@ -13,8 +16,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name", columnDefinition = "NVARCHAR(255)")
     private String name;
-    private double price;
+
+    @Column(name = "desciption", columnDefinition = "NVARCHAR(255)")
+    private String desciption;
+
+    private Integer rate;
+    private String cover;
+
+    @Nonnull
+    private Long price;
+
+    @Nonnull
+    private Integer discount;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -28,7 +43,7 @@ public class Product {
         return name;
     }
 
-    public double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
@@ -44,12 +59,49 @@ public class Product {
         this.name = name;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getDesciption() {
+        return desciption;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDesciption(String desciption) {
+        this.desciption = desciption;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    @Transient
+    public int getDiscountedPrice() {
+        return Math.round(price * (100 - discount) / 100);
     }
 
 }

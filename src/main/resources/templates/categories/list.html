@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/head :: head}" />
+  <body>
+    <header th:replace="~{fragments/header :: header}" />
+    <section class="container py-8 min-h-[60vh]">
+      <div
+        th:replace="~{fragments/blockWrapperWithRightSection :: blockWrapperWithRightSection(~{fragments/categoryList :: categoryList}, 'Category List', ~{fragments/button :: button('button', '+ Create new category', '/categories/new')})}"
+      ></div>
+    </section>
+    <footer th:replace="~{fragments/footer :: footer}" />
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!-- fragments/input.html -->
+<div th:fragment="input(type, name, placeholder, label, options)">
+  <th:block
+    th:with="class='border text-gray-txt text-sm rounded-lg focus-visible:ring-primary focus-visible:border-primary focus-visible:ring-2 outline-none block w-full p-2.5 bg-transparent'"
+  >
+    <label
+      th:for="${name}"
+      th:text="${label}"
+      class="block mb-2 text-sm font-medium text-gray-txt"
+    ></label>
+
+    <!-- Input (text, number, email, etc.) -->
+    <input
+      th:if="${type != 'textarea'} and ${type != 'select'}"
+      th:type="${type}"
+      th:id="${name}"
+      th:field="*{__${name}__}"
+      th:placeholder="${placeholder}"
+      th:class="${class}"
+      required
+    />
+
+    <!-- Textarea -->
+    <textarea
+      th:if="${type == 'textarea'}"
+      th:id="${name}"
+      th:field="*{__${name}__}"
+      th:placeholder="${placeholder}"
+      th:class="${class}"
+      required
+    ></textarea>
+
+    <!-- Select -->
+    <select
+      th:if="${type == 'select'}"
+      th:id="${name}"
+      th:field="*{__${name}__}"
+      th:class="${class}"
+      required
+    >
+      <option
+        th:each="opt : ${options}"
+        th:value="${opt.id}"
+        th:text="${opt.name}"
+      ></option>
+    </select>
+  </th:block>
+</div>

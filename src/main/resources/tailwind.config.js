@@ -18,12 +18,13 @@ module.exports = {
       manrope: ["Manrope", "sans-serif"],
     },
     colors: {
+      border: "#e5e7eb",
       transparent: "transparent",
       current: "currentColor",
       white: "#ffffff",
       black: "#010717",
       primary: "#da5036",
-      "primary-forground": "#ffffff",
+      "primary-foreground": "#ffffff",
       gray: {
         lighter: "#FAF7F3",
         light: "#323232",
@@ -31,10 +32,16 @@ module.exports = {
         txt: "#888888",
         line: "#E5E5E5",
       },
+      red: {
+        DEFAULT: "#d70018",
+      },
+      yellow: {
+        DEFAULT: "#ffec3d",
+      },
     },
     extend: {
       boxShadow: {
-        center: "0 0 20px rgba(0, 0, 0, 0.2)",
+        center: "0 0 20px rgba(0, 0, 0, 0.1)",
       },
     },
   },

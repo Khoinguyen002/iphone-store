@@ -1,0 +1,18 @@
+<form
+  th:action="${category.id} != null ? @{'/categories/update/' + ${category.id}} : @{/categories/new}"
+  th:object="${category}"
+  method="post"
+  th:fragment="createCategoryForm"
+>
+  <!-- Name -->
+  <div
+    th:replace="~{fragments/input :: input('text', 'name', 'Apple...', 'Category name', null)}"
+  ></div>
+
+  <!-- Submit -->
+  <div class="mt-4 text-right">
+    <button type="submit" class="bg-primary text-white px-4 py-2 rounded">
+      Lưu danh mục
+    </button>
+  </div>
+</form>

@@ -1,8 +1,8 @@
 package com.iphone_store.iphone_store.controller;
 
 import com.iphone_store.iphone_store.entity.Product;
+import com.iphone_store.iphone_store.service.CategoryService;
 import com.iphone_store.iphone_store.service.ProductService;
-import com.iphone_store.iphone_store.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +16,12 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     @GetMapping
     public ModelAndView list() {
         ModelAndView mav = new ModelAndView("products/list");
-        mav.addObject("products", productService.getAllProducts());
+        mav.addObject("products", productService.getFirst10Products());
         return mav;
     }
 
@@ -29,12 +29,13 @@ public class ProductController {
     public ModelAndView createForm() {
         ModelAndView mav = new ModelAndView("products/form");
         mav.addObject("product", new Product());
-        mav.addObject("categories", categoryRepository.findAll());
+        mav.addObject("categories", categoryService.getAllCategories());
         return mav;
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ModelAndView save(@ModelAttribute Product product) {
+        System.out.println(product);
         productService.saveProduct(product);
         return new ModelAndView("redirect:/products");
     }
@@ -43,7 +44,7 @@ public class ProductController {
     public ModelAndView edit(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("products/form");
         mav.addObject("product", productService.getProductById(id));
-        mav.addObject("categories", categoryRepository.findAll());
+        mav.addObject("categories", categoryService.getAllCategories());
         return mav;
     }
 
@@ -61,9 +62,17 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public ModelAndView search(@RequestParam String keyword) {
-        ModelAndView mav = new ModelAndView("products/list");
-        mav.addObject("products", productService.searchByName(keyword));
+    public ModelAndView search(@RequestParam(defaultValue = "") String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        ModelAndView mav = new ModelAndView("/search");
+        var productPage = productService.searchByNamePaged(keyword, page, size);
+
+        mav.addObject("products", productPage.getContent());
+        mav.addObject("totalPages", productPage.getTotalPages());
+        mav.addObject("currentPage", page);
+        mav.addObject("keyword", keyword);
+
         return mav;
     }
 }

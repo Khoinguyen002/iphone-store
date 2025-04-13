@@ -29,7 +29,7 @@ public class CategoryController {
         return mav;
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ModelAndView save(@ModelAttribute Category category) {
         categoryService.saveCategory(category);
         return new ModelAndView("redirect:/categories");

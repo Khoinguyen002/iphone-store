@@ -1,0 +1,13 @@
+<div
+  th:fragment="blockWrapperWithRightSection(content, label, rightSection)"
+  class="p-8 shadow-center rounded-xl"
+>
+  <div class="flex justify-between mb-4">
+    <p
+      th:text="${label}"
+      class="uppercase text-primary font-semibold text-lg"
+    ></p>
+    <div th:if="${rightSection != null}" th:replace="${rightSection}"></div>
+  </div>
+  <div th:replace="${content}"></div>
+</div>
