@@ -19,8 +19,8 @@ public class Product {
     @Column(name = "name", columnDefinition = "NVARCHAR(255)")
     private String name;
 
-    @Column(name = "desciption", columnDefinition = "NVARCHAR(255)")
-    private String desciption;
+    @Column(name = "description", columnDefinition = "NVARCHAR(255)")
+    private String description;
 
     private Integer rate;
     private String cover;
@@ -67,8 +67,8 @@ public class Product {
         this.category = category;
     }
 
-    public String getDesciption() {
-        return desciption;
+    public String getDescription() {
+        return description;
     }
 
     public Integer getRate() {
@@ -83,8 +83,8 @@ public class Product {
         return discount;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setRate(Integer rate) {

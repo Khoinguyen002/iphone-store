@@ -1,7 +1,7 @@
 <!-- fragments/input.html -->
-<div th:fragment="input(type, name, placeholder, label, options)">
+<div th:fragment="input(type, name, placeholder, label)">
   <th:block
-    th:with="class='border text-gray-txt text-sm rounded-lg focus-visible:ring-primary focus-visible:border-primary focus-visible:ring-2 outline-none block w-full p-2.5 bg-transparent'"
+    th:with="class='border text-gray-txt text-sm rounded-lg focus-visible:ring-primary focus-visible:border-primary focus-visible:ring-2 outline-none block w-full p-2.5 bg-transparent transition-all'"
   >
     <label
       th:for="${name}"
@@ -17,7 +17,6 @@
       th:field="*{__${name}__}"
       th:placeholder="${placeholder}"
       th:class="${class}"
-      required
     />
 
     <!-- Textarea -->
@@ -27,21 +26,30 @@
       th:field="*{__${name}__}"
       th:placeholder="${placeholder}"
       th:class="${class}"
-      required
     ></textarea>
+  </th:block>
+</div>
+
+<div
+  th:fragment="select(name, placeholder, label, options, selectedId, hasAllValue)"
+>
+  <th:block
+    th:with="class='border text-gray-txt text-sm rounded-lg focus-visible:ring-primary focus-visible:border-primary focus-visible:ring-2 outline-none block w-full p-2.5 bg-transparent'"
+  >
+    <label
+      th:for="${name}"
+      th:text="${label}"
+      class="block mb-2 text-sm font-medium text-gray-txt"
+    ></label>
 
     <!-- Select -->
-    <select
-      th:if="${type == 'select'}"
-      th:id="${name}"
-      th:field="*{__${name}__}"
-      th:class="${class}"
-      required
-    >
+    <select th:id="${name}" th:field="*{__${name}__}" th:class="${class}">
+      <option th:if="${hasAllValue == 1}" value="">All</option>
       <option
         th:each="opt : ${options}"
         th:value="${opt.id}"
         th:text="${opt.name}"
+        th:selected="${selectedId == opt.id}"
       ></option>
     </select>
   </th:block>

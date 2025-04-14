@@ -1,4 +1,5 @@
 <div th:fragment="productCards" class="grid grid-cols-4 gap-4">
+  <div th:if="${products.size() == 0}" class="text-gray-txt">No result</div>
   <div th:each="product : ${products}">
     <div th:replace="~{fragments/productCard :: productCard(${product})}"></div>
   </div>

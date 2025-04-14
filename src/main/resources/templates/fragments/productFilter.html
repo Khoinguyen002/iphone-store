@@ -1,0 +1,30 @@
+<form
+  th:fragment="filterForm"
+  th:action="@{/products/search}"
+  method="get"
+  class="flex items-end gap-4 w-full"
+  th:object="${productFilter}"
+>
+  <!-- Category Dropdown -->
+  <div
+    th:replace="~{fragments/input :: select('categoryId', '', 'Category', ${categories}, ${selectedCategoryId}, 1)}"
+    class="w-48"
+  ></div>
+
+  <!-- Keyword Input -->
+  <div
+    th:replace="~{fragments/input :: input('text', 'keyword', 'Search', 'Keyword')}"
+    class="w-64"
+  ></div>
+
+  <!-- Page Size Dropdown -->
+  <div
+    th:replace="~{fragments/input :: select('size', '', 'Page size', ${pageSizes}, ${size}, 0)}"
+    class="w-32"
+  ></div>
+
+  <!-- Submit Button -->
+  <button th:replace="~{fragments/button :: button('submit', 'Filter', null)}">
+    filter
+  </button>
+</form>

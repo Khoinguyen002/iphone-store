@@ -3,11 +3,15 @@
   <head th:replace="~{fragments/head :: head}"></head>
   <body class="space-y-20">
     <header th:replace="~{fragments/header :: header}"></header>
-    <section th:replace="~{fragments/banner :: banner}"></section>
-    <section class="container">
+
+    <section class="container space-y-4">
       <div
-        th:replace="~{fragments/blockWrapperWithRightSection :: blockWrapperWithRightSection(~{fragments/productCards :: productCards}, 'Recent Products', ~{fragments/button :: button('button', 'View more', '/store')})}"
+        th:replace="~{fragments/blockWrapper :: blockWrapper(~{fragments/productFilter :: filterForm}, 'Products Filter')}"
       ></div>
+      <div
+        th:replace="~{fragments/blockWrapper :: blockWrapper(~{fragments/productCards :: productCards}, 'Results')}"
+      ></div>
+      <div th:replace="~{fragments/pagination :: pagination}"></div>
     </section>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>

@@ -36,8 +36,12 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public Page<Product> searchByNamePaged(String keyword, int page, int size) {
+    public Page<Product> searchByKeywordAndCategoryPaged(String keyword, Long categoryId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return productRepository.findByNameContainingIgnoreCase(keyword, pageable);
+        if (categoryId != null) {
+            return productRepository.findByNameContainingIgnoreCaseAndCategoryId(keyword, categoryId, pageable);
+        } else {
+            return productRepository.findByNameContainingIgnoreCase(keyword, pageable);
+        }
     }
 }

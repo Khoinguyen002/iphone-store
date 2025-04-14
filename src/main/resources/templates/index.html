@@ -6,7 +6,7 @@
     <section th:replace="~{fragments/banner :: banner}"></section>
     <section class="container">
       <div
-        th:replace="~{fragments/blockWrapperWithRightSection :: blockWrapperWithRightSection(~{fragments/productCards :: productCards}, 'Recent Products', ~{fragments/button :: button('button', 'View more', '/search')})}"
+        th:replace="~{fragments/blockWrapperWithRightSection :: blockWrapperWithRightSection(~{fragments/productCards :: productCards}, 'Recent Products', ~{fragments/button :: button('button', 'View more', '/products/search')})}"
       ></div>
     </section>
 

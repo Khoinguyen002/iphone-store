@@ -1,7 +1,46 @@
-<a
+<nav
+  class="flex items-center gap-x-1 justify-center"
+  aria-label="Pagination"
   th:fragment="pagination"
-  th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
-  th:href="@{/products(page=${i}, keyword=${keyword})}"
-  th:text="${i + 1}"
-  th:classappend="${i == currentPage} ? 'active' : ''"
-></a>
+  th:if="${totalPages > 0}"
+>
+  <!-- Previous button -->
+  <a
+    th:href="@{/products/search(page=${currentPage - 1}, keyword=${keyword}, size=${size})}"
+    th:if="${currentPage > 0}"
+    class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100"
+  >
+    <span>Previous</span>
+  </a>
+  <span
+    th:if="${currentPage == 0}"
+    class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-400 bg-gray-100 cursor-not-allowed"
+  >
+    Previous
+  </span>
+
+  <!-- Page buttons -->
+  <a
+    type="button"
+    th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+    th:text="${i + 1}"
+    th:class="'min-h-9.5 min-w-9.5 flex justify-center items-center py-2 px-3 text-sm rounded-lg ' +
+              (${i} == ${currentPage} ? 'bg-primary text-primary-foreground' : 'text-gray-800 hover:bg-gray-100')"
+    th:href="@{/products/search(keyword=${keyword}, page=${i}, size=${size})}"
+  ></a>
+
+  <!-- Next button -->
+  <a
+    th:href="@{/products/search(page=${currentPage + 1}, keyword=${keyword}, size=${size})}"
+    th:if="${currentPage < totalPages - 1}"
+    class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100"
+  >
+    <span>Next</span>
+  </a>
+  <span
+    th:if="${currentPage >= totalPages - 1}"
+    class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-400 bg-gray-100 cursor-not-allowed"
+  >
+    Next
+  </span>
+</nav>

@@ -8,37 +8,37 @@
   <div class="grid grid-cols-2 gap-4">
     <!-- Name -->
     <div
-      th:replace="~{fragments/input :: input('text', 'name', 'Product name', 'Product name', null)}"
+      th:replace="~{fragments/input :: input('text', 'name', 'Product name', 'Product name')}"
     ></div>
 
     <!-- Description -->
     <div
-      th:replace="~{fragments/input :: input('textarea', 'desciption', 'Desciption', 'Desciption', null)}"
+      th:replace="~{fragments/input :: input('textarea', 'description', 'Description', 'Description')}"
     ></div>
 
     <!-- Rate -->
     <div
-      th:replace="~{fragments/input :: input('number', 'rate', '', 'Đánh giá (sao)', null)}"
+      th:replace="~{fragments/input :: input('number', 'rate', '', 'Rate')}"
     ></div>
 
     <!-- Cover -->
     <div
-      th:replace="~{fragments/input :: input('text', 'cover', '', 'Ảnh bìa (URL)', null)}"
+      th:replace="~{fragments/input :: input('text', 'cover', '', 'Ảnh bìa (URL)')}"
     ></div>
 
     <!-- Price -->
     <div
-      th:replace="~{fragments/input :: input('number', 'price', '', 'Giá bán', null)}"
+      th:replace="~{fragments/input :: input('number', 'price', '', 'Price')}"
     ></div>
 
     <!-- Discount -->
     <div
-      th:replace="~{fragments/input :: input('number', 'discount', '', 'Giảm giá (%)', null)}"
+      th:replace="~{fragments/input :: input('number', 'discount', '', 'Discount (%)')}"
     ></div>
 
     <!-- Category (select) -->
     <div
-      th:replace="~{fragments/input :: input('select', 'category', '', 'Danh mục', ${categories})}"
+      th:replace="~{fragments/input :: select('category', '', 'Category', ${categories}, null, null)}"
     ></div>
   </div>
 

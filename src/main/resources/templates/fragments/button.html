@@ -1,9 +1,12 @@
-<a
+<button
   th:fragment="button(type, label, href)"
   th:type="${type}"
-  class="bg-primary text-white px-4 py-2 rounded"
-  th:text="${label}"
-  th:href="@{${href}}"
+  class="bg-primary text-white px-4 py-2 rounded-lg relative"
 >
-  Lưu sản phẩm
-</a>
+  <a
+    th:if="${href != null}"
+    th:href="@{${href}}"
+    class="absolute top-0 left-0 h-full w-full"
+  ></a>
+  <p th:text="${label}"></p>
+</button>
