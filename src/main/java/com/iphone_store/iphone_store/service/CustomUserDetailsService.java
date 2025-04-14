@@ -21,16 +21,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Tìm user theo username
         User user = userRepository.findByUsername(username)
-            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         // Tạo authority từ role
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole().name());
 
         // Trả về user details cho Spring Security
         return new org.springframework.security.core.userdetails.User(
-            user.getUsername(),
-            user.getPassword(),
-            Collections.singletonList(authority)
-        );
+                user.getUsername(),
+                user.getPassword(),
+                Collections.singletonList(authority));
     }
 }

@@ -17,8 +17,13 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
-    public ModelAndView loginPage() {
-        return new ModelAndView("auth/login");
+    public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error) {
+        ModelAndView mav = new ModelAndView("auth/login");
+        mav.addObject("user", new User());
+        if (error != null) {
+            mav.addObject("error", "Wrong credential!");
+        }
+        return mav;
     }
 
     @GetMapping("/register")
@@ -34,7 +39,14 @@ public class AuthController {
 
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             mav.setViewName("auth/register");
-            mav.addObject("error", "Tên đăng nhập đã tồn tại");
+            mav.addObject("error", user.getUsername() + " is already existed!");
+            mav.addObject("user", user);
+            return mav;
+        }
+
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
+            mav.setViewName("auth/register");
+            mav.addObject("error", "Passwords do not match!");
             mav.addObject("user", user);
             return mav;
         }
@@ -44,7 +56,7 @@ public class AuthController {
         userRepository.save(user);
 
         mav.setViewName("auth/login");
-        mav.addObject("success", "Đăng ký thành công! Hãy đăng nhập.");
+        mav.addObject("success", "Register sucessfully!");
         return mav;
     }
 }

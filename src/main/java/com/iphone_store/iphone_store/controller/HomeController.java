@@ -18,7 +18,7 @@ public class HomeController {
     public ModelAndView homePageData() {
         ModelAndView mav = new ModelAndView("/index");
 
-        mav.addObject("products", productService.getAllProducts());
+        mav.addObject("products", productService.getFirst10Products());
         return mav;
     }
 }

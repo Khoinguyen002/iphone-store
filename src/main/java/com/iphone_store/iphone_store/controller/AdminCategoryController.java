@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/categories")
-public class CategoryController {
+@RequestMapping("/admin/categories")
+public class AdminCategoryController {
 
     @Autowired
     private CategoryService categoryService;
@@ -32,7 +32,7 @@ public class CategoryController {
     @PostMapping("/new")
     public ModelAndView save(@ModelAttribute Category category) {
         categoryService.saveCategory(category);
-        return new ModelAndView("redirect:/categories");
+        return new ModelAndView("redirect:/admin/categories");
     }
 
     @GetMapping("/edit/{id}")
@@ -46,19 +46,12 @@ public class CategoryController {
     public ModelAndView update(@PathVariable Long id, @ModelAttribute Category category) {
         category.setId(id);
         categoryService.saveCategory(category);
-        return new ModelAndView("redirect:/categories");
+        return new ModelAndView("redirect:/admin/categories");
     }
 
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable Long id) {
         categoryService.deleteCategory(id);
-        return new ModelAndView("redirect:/categories");
-    }
-
-    @GetMapping("/search")
-    public ModelAndView search(@RequestParam String keyword) {
-        ModelAndView mav = new ModelAndView("categories/list");
-        mav.addObject("categories", categoryService.searchByName(keyword));
-        return mav;
+        return new ModelAndView("redirect:/admin/categories");
     }
 }
