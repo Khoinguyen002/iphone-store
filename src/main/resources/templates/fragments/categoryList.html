@@ -24,12 +24,12 @@
           <td class="px-6 py-4" th:text="${category.products.size()}">10</td>
           <td class="px-6 py-4 space-x-2">
             <a
-              th:href="@{'/categories/edit/' + ${category.id}}"
+              th:href="@{'/admin/categories/edit/' + ${category.id}}"
               class="text-gray-txt hover:underline"
               >Sửa</a
             >
             <a
-              th:href="@{'/categories/delete/' + ${category.id}}"
+              th:href="@{'/admin/categories/delete/' + ${category.id}}"
               onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
               class="text-red hover:underline"
               >Xóa</a

@@ -2,13 +2,13 @@
   th:fragment="header"
   class="container sticky top-4 mt-8 backdrop-blur-md bg-white/80 z-50 rounded-full shadow-center"
 >
-  <nav class="flex items-center h-20">
+  <nav class="flex items-center h-16">
     <!-- logo -->
     <div class="order-0">
-      <a href="index.html">
+      <a href="/">
         <img
-          src="https://bakes-saigon.com/cdn/shop/files/BAKES__Logo-06_220x.png?v=1638454703"
-          width="180"
+          src="/images/logo.png"
+          width="120"
           alt="logo"
           class="rounded-full"
         />
@@ -26,8 +26,33 @@
         ></a>
       </li>
     </ul>
-    <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
-      <a class="primary-button" href="signin.html">Sign Up</a>
+    <div class="order-1 ml-auto items-center md:order-2 md:ml-0 lg:flex">
+      <a
+        th:unless="${#authorization.expression('isAuthenticated()')}"
+        class="primary-button"
+        href="/login"
+        >Login</a
+      >
+
+      <div
+        th:if="${#authorization.expression('isAuthenticated()')}"
+        class="flex items-center gap-2"
+      >
+        <p>Hi <span th:text="${#authentication.name}"></span></p>
+        <a
+          class="primary-button"
+          href="#"
+          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+        >
+          Logout
+        </a>
+        <form
+          id="logout-form"
+          th:action="@{/logout}"
+          method="post"
+          style="display: none"
+        ></form>
+      </div>
     </div>
   </nav>
 </header>

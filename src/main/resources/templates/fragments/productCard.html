@@ -24,12 +24,14 @@
   <!-- Product Info -->
   <div class="flex gap-2 flex-col justify-between flex-1">
     <div class="flex gap-2 flex-col">
-      <h3
-        class="text-gray-light font-semibold cursor-pointer"
-        th:text="${product.name}"
-      >
-        Tên sản phẩm
-      </h3>
+      <a th:href="@{'/products/' + ${product.id}}">
+        <h3
+          class="text-gray-light font-semibold cursor-pointer"
+          th:text="${product.name}"
+        >
+          Tên sản phẩm
+        </h3>
+      </a>
 
       <div class="flex gap-2">
         <p

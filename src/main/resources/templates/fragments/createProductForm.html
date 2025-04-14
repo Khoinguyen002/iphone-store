@@ -1,7 +1,7 @@
 <form
   th:fragment="createProductForm"
   id="createProductForm"
-  th:action="${product.id} != null ? @{'/products/update/' + ${product.id}} : @{/products/new}"
+  th:action="${product.id} != null ? @{'/admin/products/update/' + ${product.id}} : @{/admin/products/new}"
   th:object="${product}"
   method="post"
 >

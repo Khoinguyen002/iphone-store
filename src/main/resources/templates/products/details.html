@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:replace="~{fragments/head :: head}"></head>
-  <body>
+  <body class="space-y-20">
     <header th:replace="~{fragments/header :: header}"></header>
-
-    <section class="container py-8 min-h-[60vh]">
+    <section class="container">
       <div
-        th:replace="~{fragments/blockWrapperWithRightSection :: blockWrapperWithRightSection(~{fragments/productList :: productList}, 'Product List', ~{fragments/button :: button('button', '+ Create new product', '/admin/products/new')})}"
+        th:replace="~{fragments/blockWrapper :: blockWrapper(~{fragments/productDetails :: productDetails}, null)}"
       ></div>
     </section>
 

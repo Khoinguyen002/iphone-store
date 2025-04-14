@@ -1,5 +1,5 @@
 <form
-  th:action="${category.id} != null ? @{'/categories/update/' + ${category.id}} : @{/categories/new}"
+  th:action="${category.id} != null ? @{'/admin/categories/update/' + ${category.id}} : @{/admin/categories/new}"
   th:object="${category}"
   method="post"
   th:fragment="createCategoryForm"

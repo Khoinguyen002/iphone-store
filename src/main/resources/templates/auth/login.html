@@ -5,13 +5,7 @@
     <header th:replace="~{fragments/header :: header}"></header>
 
     <section class="container space-y-4 min-h-[60vh]">
-      <div
-        th:replace="~{fragments/blockWrapper :: blockWrapper(~{fragments/productFilter :: filterForm}, 'Products Filter')}"
-      ></div>
-      <div
-        th:replace="~{fragments/blockWrapper :: blockWrapper(~{fragments/productCards :: productCards}, 'Results')}"
-      ></div>
-      <div th:replace="~{fragments/pagination :: pagination}"></div>
+      <div th:replace="fragments/loginForm :: loginForm"></div>
     </section>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>

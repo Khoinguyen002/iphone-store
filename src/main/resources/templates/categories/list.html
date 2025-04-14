@@ -5,7 +5,7 @@
     <header th:replace="~{fragments/header :: header}" />
     <section class="container py-8 min-h-[60vh]">
       <div
-        th:replace="~{fragments/blockWrapperWithRightSection :: blockWrapperWithRightSection(~{fragments/categoryList :: categoryList}, 'Category List', ~{fragments/button :: button('button', '+ Create new category', '/categories/new')})}"
+        th:replace="~{fragments/blockWrapperWithRightSection :: blockWrapperWithRightSection(~{fragments/categoryList :: categoryList}, 'Category List', ~{fragments/button :: button('button', '+ Create new category', '/admin/categories/new')})}"
       ></div>
     </section>
     <footer th:replace="~{fragments/footer :: footer}" />

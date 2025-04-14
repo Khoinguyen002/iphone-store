@@ -34,12 +34,12 @@
           </td>
           <td class="px-6 py-4 space-x-2">
             <a
-              th:href="@{'/products/edit/' + ${product.id}}"
+              th:href="@{'/admin/products/edit/' + ${product.id}}"
               class="text-blue-600 hover:underline"
               >Sửa</a
             >
             <a
-              th:href="@{'/products/delete/' + ${product.id}}"
+              th:href="@{'/admin/products/delete/' + ${product.id}}"
               onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
               class="text-red-600 hover:underline"
               >Xóa</a
