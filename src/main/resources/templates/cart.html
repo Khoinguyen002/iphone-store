@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/head :: head}"></head>
+  <body class="space-y-20">
+    <header th:replace="~{fragments/header :: header}"></header>
+    <section class="bg-white py-8 antialiased md:py-16">
+      <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+        <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">
+          Shopping Cart
+        </h2>
+
+        <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+          <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
+            <!-- <div
+              class="space-y-6"
+              th:each="item : ${cartItems}"
+              th:replace="~{fragments/cartItem :: cartItem(${item})}"
+            ></div> -->
+          </div>
+
+          <div
+            class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full"
+          >
+            <div
+              class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
+            >
+              <p class="text-xl font-semibold text-gray-900">Order summary</p>
+              <dl class="flex items-center justify-between gap-4">
+                <dt class="text-base font-normal text-gray-500">Total</dt>
+                <!-- <dd
+                  class="text-base font-bold text-gray-900"
+                  th:text="${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 'đ')}"
+                ></dd> -->
+              </dl>
+              <a
+                href="#"
+                class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800"
+                >Proceed to Checkout</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+  </body>
+</html>

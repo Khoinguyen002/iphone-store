@@ -33,8 +33,6 @@ public class ProductController {
         Product product = productService.getProductById(id);
 
         mav.addObject("product", product);
-        System.out.println("ccccc" + id);
-        System.out.println(product.getName());
         return mav;
     }
 
