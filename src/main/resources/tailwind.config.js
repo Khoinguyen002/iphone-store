@@ -27,7 +27,7 @@ module.exports = {
         current: "currentColor",
         white: "#ffffff",
         black: "#010717",
-        primary: "#da5036",
+        primary: "#a05a42",
         "primary-foreground": "#ffffff",
         gray: {
           lighter: "#FAF7F3",

@@ -24,8 +24,10 @@ public class CartController {
     @GetMapping
     public ModelAndView showCart() {
         ModelAndView mav = new ModelAndView("cart");
-        mav.addObject("cartItems", cartService.getCurrentUserCart());
-        mav.addObject("total", cartService.getTotal());
+        mav.addObject("cartItems", cartService.getCurrentUserCart().getItems());
+        mav.addObject("totalPrice", cartService.getTotalPrice());
+        mav.addObject("originalTotalPrice", cartService.getOriginalTotalPrice());
+        mav.addObject("savingPrice", cartService.getSavingPrice());
         return mav;
     }
 
@@ -36,7 +38,15 @@ public class CartController {
     }
 
     @PostMapping("/update/{productId}")
-    public ModelAndView updateCart(@PathVariable Long productId, @RequestParam int quantity, Principal principal) {
+    public ModelAndView updateCart(
+            @PathVariable Long productId,
+            @RequestParam int quantity,
+            @RequestParam String action) {
+        if ("increase".equals(action)) {
+            quantity++;
+        } else if ("decrease".equals(action)) {
+            quantity = Math.max(1, quantity - 1); // không giảm < 1
+        }
         cartService.updateCartItem(productId, quantity);
         return new ModelAndView("redirect:/cart");
     }
@@ -46,4 +56,4 @@ public class CartController {
         cartService.removeFromCart(productId);
         return new ModelAndView("redirect:/cart");
     }
-} 
+}

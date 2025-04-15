@@ -18,6 +18,7 @@ public class MenuAdvice {
         List<Map<String, String>> menus = new ArrayList<>();
         menus.add(Map.of("title", "Home", "href", "/"));
         menus.add(Map.of("title", "Search", "href", "/search"));
+        menus.add(Map.of("title", "Cart", "href", "/cart"));
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.isAuthenticated() && hasRole(auth, "ADMIN")) {

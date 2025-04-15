@@ -1,7 +1,7 @@
 <!-- fragments/input.html -->
 <div th:fragment="input(type, name, placeholder, label)">
   <th:block
-    th:with="class='border text-gray-txt text-sm rounded-lg focus-visible:ring-primary focus-visible:border-primary focus-visible:ring-2 outline-none block w-full p-2.5 bg-transparent transition-all'"
+    th:with="class='border text-gray-txt text-sm rounded-lg focus-visible:ring-primary focus-visible:ring-2 outline-none block w-full p-2.5 bg-transparent transition-all'"
   >
     <label
       th:for="${name}"
@@ -34,7 +34,7 @@
   th:fragment="select(name, placeholder, label, options, selectedId, hasAllValue)"
 >
   <th:block
-    th:with="class='border text-gray-txt text-sm rounded-lg focus-visible:ring-primary focus-visible:border-primary focus-visible:ring-2 outline-none block w-full p-2.5 bg-transparent'"
+    th:with="class='border text-gray-txt text-sm rounded-lg focus-visible:ring-primary focus-visible:ring-2 outline-none block w-full p-2.5 bg-transparent transition-all'"
   >
     <label
       th:for="${name}"
