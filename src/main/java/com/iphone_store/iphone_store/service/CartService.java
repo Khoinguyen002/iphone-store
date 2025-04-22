@@ -39,6 +39,16 @@ public class CartService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    public BigDecimal getTotalPrice(Cart cart) {
+        return cart.getItems().stream()
+                .map(item -> {
+                    Product product = item.getProduct();
+                    long discountedPrice = product.getPrice() * (100 - product.getDiscount()) / 100;
+                    return BigDecimal.valueOf(discountedPrice * item.getQuantity());
+                })
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     public BigDecimal getSavingPrice() {
         return getCurrentUserCart().getItems().stream()
                 .map(item -> {
@@ -73,6 +83,10 @@ public class CartService {
         Cart cart = getCurrentUserCart();
         cart.removeItem(productId);
         cartRepository.save(cart);
+    }
+
+    public void removeCart(Long id) {
+        cartRepository.deleteById(id);
     }
 
 }

@@ -1,0 +1,39 @@
+<div th:fragment="adminOrderList" class="space-y-4">
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-txt">
+      <thead class="text-xs text-primary-foreground uppercase bg-primary">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left">ID</th>
+          <th scope="col" class="px-6 py-3">Order Date</th>
+          <th scope="col" class="px-6 py-3">Order Status</th>
+          <th scope="col" class="px-6 py-3">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          th:each="order : ${orders}"
+          class="border-b border-border hover:bg-gray-lighter"
+        >
+          <td
+            class="px-6 py-4 font-medium text-gray-txt whitespace-nowrap"
+            th:text="${'#' + order.id}"
+          >
+            iPhone 15
+          </td>
+          <td
+            class="px-6 py-4"
+            th:text="${#temporals.format(order.createdAt, 'dd.MM.yyyy hh:mm:ss')}"
+          >
+            1
+          </td>
+          <td class="px-6 py-4" th:text="${order.orderStatus.label}">10</td>
+          <td class="px-6 py-4 space-x-2">
+            <div
+              th:replace="~{fragments/adminOrderActions :: adminOrderActions(0)}"
+            ></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

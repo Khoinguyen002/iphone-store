@@ -1,0 +1,35 @@
+<div
+  class="flex gap-2"
+  th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+  th:fragment="adminOrderActions(hideView)"
+>
+  <form
+    th:if="${order.orderStatus.label != 'Confirmed' && order.orderStatus.label != 'Cancelled'}"
+    th:action="@{'/admin/orders/confirm/' + ${order.id}}"
+    method="post"
+  >
+    <button type="submit" class="primary-button">Confirm</button>
+  </form>
+
+  <a
+    th:if="${hideView == 0}"
+    type="submit"
+    class="whitespace-nowrap secondary-button"
+    th:href="@{'/orders/' + ${order.id}}"
+  >
+    View
+  </a>
+
+  <form
+    th:if="${order.orderStatus.label != 'Rejected' && order.orderStatus.label != 'Cancelled'}"
+    th:action="@{'/admin/orders/reject/' + ${order.id}}"
+    method="post"
+  >
+    <button
+      type="submit"
+      class="primary-outlined-button text-red-500 border-red-500 hover:bg-red-500"
+    >
+      Reject
+    </button>
+  </form>
+</div>

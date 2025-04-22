@@ -28,6 +28,7 @@ module.exports = {
         white: "#ffffff",
         black: "#010717",
         primary: "#a05a42",
+        secondary: "#e5e7eb",
         "primary-foreground": "#ffffff",
         gray: {
           lighter: "#FAF7F3",

@@ -16,7 +16,7 @@
   <!-- Brand (placeholder hoặc từ product nếu có) -->
   <div
     class="absolute p-1 text-xs rounded-md bg-primary/15 right-2 text-primary border border-primary font-semibold"
-    th:text="${product.category.name}"
+    th:text="${product.category?.name}"
   ></div>
 
   <!-- Cover Image -->
@@ -29,7 +29,7 @@
     <div class="flex gap-2 flex-col">
       <a th:href="@{'/products/' + ${product.id}}">
         <h3
-          class="text-gray-light font-semibold cursor-pointer"
+          class="text-gray-light font-semibold cursor-pointer hover:underline"
           th:text="${product.name}"
         >
           Tên sản phẩm

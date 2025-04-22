@@ -5,16 +5,27 @@
     <header th:replace="~{fragments/header :: header}"></header>
     <section class="container grid grid-cols-3 gap-4">
       <div class="block-wrapper col-span-2">
-        <h2 class="text-xl font-semibold text-gray-900">Shopping Cart</h2>
+        <div
+          class="flex justify-between"
+          th:with="class='px-2 rounded-lg text-xs font-semibold '"
+        >
+          <h2 class="text-xl font-semibold text-gray-900">
+            Order <span class="text-sm" th:text="${'#ORD' + order.id}"></span>
+          </h2>
+          <button
+            th:class="${class + (order.orderStatus.label == 'Pending confirm' ? 'bg-orange-400 text-yellow-50' : order.orderStatus.label == 'Rejected' ? 'bg-red-500 text-white' : order.orderStatus.label == 'Cancelled' ? 'bg-gray-300 text-white' : 'bg-green-500 text-white')}"
+            th:text="${order.orderStatus.label}"
+          ></button>
+        </div>
 
         <div class="w-full mt-4">
           <div class="space-y-6">
-            <div th:if="${cartItems.size() == 0}" class="text-gray-txt">
-              No result
+            <div th:if="${order.orderItems.size() == 0}" class="text-gray-txt">
+              Your order is empty
             </div>
-            <div th:each="item : ${cartItems}">
+            <div th:each="item : ${order.orderItems}">
               <div
-                th:replace="~{fragments/cartItem :: cartItem(${item})}"
+                th:replace="~{fragments/orderItem :: orderItem(${item})}"
               ></div>
             </div>
           </div>
@@ -51,13 +62,10 @@
             th:text="${#numbers.formatDecimal(totalPrice, 0, 'POINT', 0, 'POINT') + 'đ'}"
           ></dd>
         </dl>
-
-        <form th:action="@{/orders/create}" method="post">
-          <button class="primary-button w-full block text-center">
-            Proceed to Checkout
-          </button>
-        </form>
       </div>
+      <div
+        th:replace="~{fragments/adminOrderActions :: adminOrderActions(1)}"
+      ></div>
     </section>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>

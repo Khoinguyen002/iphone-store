@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/head :: head}"></head>
+  <body>
+    <header th:replace="~{fragments/header :: header}"></header>
+
+    <section class="container py-8 min-h-[60vh]">
+      <div
+        th:replace="~{fragments/blockWrapper :: blockWrapper(~{fragments/orderList :: orderList}, 'Order List')}"
+      ></div>
+    </section>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+  </body>
+</html>
