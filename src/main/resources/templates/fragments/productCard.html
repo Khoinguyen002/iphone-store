@@ -4,12 +4,11 @@
 >
   <!-- Discount Tag -->
   <div
-    class="absolute w-[70px] h-7 -left-1 z-10"
+    class="absolute rounded-xl z-10 p-1 px-2 bg-red-600"
     th:if="${product.discount > 0}"
   >
-    <img src="/images/discountTag.png" class="w-full h-full absolute -z-10" />
     <p
-      class="text-white text-xs py-1 font-semibold text-center"
+      class="text-xs text-white font-semibold text-center"
       th:text="'Giảm ' + ${product.discount} + '%'"
     ></p>
   </div>

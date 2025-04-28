@@ -1,6 +1,6 @@
 <div th:fragment="rate(value)">
   <span
-    th:each="i : ${#numbers.sequence(1, value)}"
-    class="fa-solid fa-star text-yellow"
+    th:each="i : ${#numbers.sequence(1, 5)}"
+    th:classappend="${i <= value} ? 'fa-solid fa-star text-orange-600' : 'fa-regular fa-star text-orange-600'"
   ></span>
 </div>

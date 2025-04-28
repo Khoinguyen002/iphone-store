@@ -1,67 +1,61 @@
 <div th:fragment="orderList">
   <section class="antialiased">
     <div class="divide-y divide-gray-200">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-txt">
+        <thead class="font-normal">
+          <tr>
+            <th scope="col" class="py-3 font-normal border-b">Order ID</th>
+            <th scope="col" class="py-3 font-normal border-b">Date</th>
+            <th scope="col" class="py-3 font-normal border-b">Status</th>
+            <th scope="col" class="py-3 font-normal border-b">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="order : ${orders}">
+            <td class="py-3">
+              <p th:text="'#ORD' + ${order.id}"></p>
+            </td>
+            <td class="py-3">
+              <p
+                class="mt-1.5 text-base font-semibold text-gray-900"
+                th:text="${#temporals.format(order.createdAt, 'dd.MM.yyyy hh:mm:ss')}"
+              ></p>
+            </td>
+            <td class="py-3">
+              <p
+                class="me-2 mt-1.5 inline-flex items-center rounded bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800"
+                th:text="${order.orderStatus.label}"
+              ></p>
+            </td>
+            <td class="py-3">
+              <div
+                class="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4"
+              >
+                <form
+                  th:if="${order.orderStatus.label == 'Pending confirm'}"
+                  th:action="@{'/orders/cancel/' + ${order.id}}"
+                  method="post"
+                >
+                  <button
+                    type="submit"
+                    class="whitespace-nowrap primary-outlined-button"
+                  >
+                    Cancel order
+                  </button>
+                </form>
+                <a
+                  th:href="@{'/orders/' + ${order.id}}"
+                  class="inline-flex justify-center secondary-button"
+                  >View details</a
+                >
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <!-- Lặp đơn hàng -->
       <div th:if="${orders.size() == 0}" class="text-sm text-gray-500">
         Your order is empty
-      </div>
-      <div th:each="order : ${orders}" class="flex flex-wrap items-center py-4">
-        <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
-          <dt class="text-base font-medium text-gray-500">Order ID:</dt>
-          <dd class="mt-1.5 text-base font-semibold text-gray-900">
-            <a
-              href="#"
-              class="hover:underline"
-              th:text="'#ORD' + ${order.id}"
-            ></a>
-          </dd>
-        </dl>
-
-        <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
-          <dt class="text-base font-medium text-gray-500">Date:</dt>
-          <dd
-            class="mt-1.5 text-base font-semibold text-gray-900"
-            th:text="${#temporals.format(order.createdAt, 'dd.MM.yyyy hh:mm:ss')}"
-          ></dd>
-        </dl>
-
-        <!-- <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
-          <dt class="text-base font-medium text-gray-500">Price:</dt>
-          <dd
-            class="mt-1.5 text-base font-semibold text-gray-900"
-            th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'POINT', 0, 'POINT') + 'đ'}"
-          ></dd>
-        </dl> -->
-
-        <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
-          <dt class="text-base font-medium text-gray-500">Status:</dt>
-          <dd
-            class="me-2 mt-1.5 inline-flex items-center rounded bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800"
-            th:text="${order.orderStatus.label}"
-          ></dd>
-        </dl>
-
-        <div
-          class="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4"
-        >
-          <form
-            th:if="${order.orderStatus.label == 'Pending confirm'}"
-            th:action="@{'/orders/cancel/' + ${order.id}}"
-            method="post"
-          >
-            <button
-              type="submit"
-              class="whitespace-nowrap primary-outlined-button"
-            >
-              Cancel order
-            </button>
-          </form>
-          <a
-            th:href="@{'/orders/' + ${order.id}}"
-            class="inline-flex justify-center secondary-button"
-            >View details</a
-          >
-        </div>
       </div>
     </div>
   </section>

@@ -28,11 +28,11 @@
   }
 
   .primary-button {
-    @apply bg-primary focus:ring-orange-200 focus:ring-4 text-white px-4 py-2 rounded-lg relative text-sm;
+    @apply bg-primary focus:ring-orange-200 cursor-pointer select-none focus:ring-4 text-white px-4 py-2 rounded-lg relative text-sm;
   }
 
   .secondary-button {
-    @apply rounded-lg border border-gray-200 transition-all bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-black focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100;
+    @apply rounded-lg border cursor-pointer select-none border-gray-200 transition-all bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-black focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100;
   }
 
   .primary-outlined-button {

@@ -1,21 +1,35 @@
 <section class="antialiased" th:fragment="productDetails">
   <div class="px-4 mx-auto 2xl:px-0">
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-      <div class="shrink-0 mmx-auto">
+      <div class="shrink-0 mmx-auto p-2 border rounded-xl">
         <img class="w-full" th:src="@{${product.cover}}" alt="Product image" />
       </div>
 
-      <div class="mt-6 sm:mt-8 lg:mt-0">
+      <div class="mt-6 sm:mt-8 lg:mt-0 space-y-4">
+        <div
+          class="p-1 text-xs rounded-md bg-primary/15 w-fit text-primary border border-primary font-semibold"
+          th:text="${product.category?.name}"
+        ></div>
         <h1
-          class="text-xl font-semibold text-gray-900 sm:text-2xl"
+          class="text-xl font-semibold text-gray-900 sm:text-2xl mt-4"
           th:text="${product.name}"
         >
           Product Name
         </h1>
-        <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+        <div class="flex items-center gap-2">
+          <div th:replace="~{fragments/rate :: rate(${product.rate})}"></div>
+          <div class="w-px h-6 bg-gray-300"></div>
+
+          <div class="flex gap-3">
+            <i class="fa-brands fa-facebook-f text-gray-400"></i>
+            <i class="fa-brands fa-square-x-twitter text-gray-400"></i>
+            <i class="fa-brands fa-facebook-messenger text-gray-400"></i>
+          </div>
+        </div>
+        <div class="sm:items-center sm:gap-4 sm:flex">
           <div class="flex gap-2">
             <p
-              class="text-red font-extrabold text-3xl"
+              class="font-extrabold text-2xl"
               th:text="${#numbers.formatDecimal(product.getDiscountedPrice(), 0, 'POINT', 0, 'POINT') + 'đ'}"
             >
               Giá khuyến mãi
@@ -28,65 +42,29 @@
               Giá gốc
             </p>
           </div>
-
-          <div class="flex items-center gap-2 mt-2 sm:mt-0">
-            <div th:replace="~{fragments/rate :: rate(${product.rate})}"></div>
-          </div>
         </div>
 
-        <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-          <a
-            href="#"
-            role="button"
-            class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
-          >
-            <svg
-              class="w-5 h-5 -ms-2 me-2"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-              />
-            </svg>
-            Add to favorites
-          </a>
-
-          <form th:action="@{'/cart/add/' + ${product.id}}" method="post">
-            <button
-              href="#"
-              role="button"
-              class="text-white flex gap-2 mt-4 sm:mt-0 bg-primary hover:bg-orange-600 focus:ring-4 focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none"
-            >
-              <svg
-                class="w-5 h-5 -ms-2 me-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
-                />
-              </svg>
-              Add to cart
-            </button>
-          </form>
-        </div>
-
-        <hr class="my-6 md:my-8 border-gray-200" />
-
-        <p class="mb-6 text-gray-500" th:text="${product.description}">
+        <p class="text-gray-500" th:text="${product.description}">
           Product short description
         </p>
+
+        <div class="space-y-8">
+          <hr class="border-gray-200" />
+
+          <div class="sm:gap-4 sm:items-center sm:flex">
+            <a href="#" role="button" class="secondary-button">
+              <i class="fa-regular fa-heart mr-1"></i>
+              Add to favorites
+            </a>
+
+            <form th:action="@{'/cart/add/' + ${product.id}}" method="post">
+              <button href="#" role="button" class="primary-button">
+                <i class="fa-solid fa-cart-plus mr-1"></i>
+                Add to cart
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

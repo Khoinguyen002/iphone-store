@@ -38,7 +38,10 @@
         th:if="${#authorization.expression('isAuthenticated()')}"
         class="flex items-center gap-2"
       >
-        <p>Hi <span th:text="${#authentication.name}"></span></p>
+        <div class="secondary-button">
+          <i class="fa-solid fa-user-tie"></i>
+          <span th:text="${#authentication.name}" class="ml-1"></span>
+        </div>
         <a
           class="primary-button"
           href="#"
